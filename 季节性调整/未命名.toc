@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{研究季调的意义}{3}{0}{1}
+\beamer@sectionintoc {2}{季节性调整的原理}{4}{0}{2}
+\beamer@sectionintoc {3}{春节效应原理}{5}{0}{3}
+\beamer@subsectionintoc {3}{1}{流量数据的春节效应}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{存量数据的春节效应}{8}{0}{3}
+\beamer@sectionintoc {4}{模型选择与参数设定}{9}{0}{4}
+\beamer@subsectionintoc {4}{1}{模型选择}{9}{0}{4}
+\beamer@subsectionintoc {4}{2}{参数设定}{11}{0}{4}

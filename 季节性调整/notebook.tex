@@ -1,0 +1,509 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{????????????}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{季节性调整与春节效应}\label{ux5b63ux8282ux6027ux8c03ux6574ux4e0eux6625ux8282ux6548ux5e94}
+
+    \begin{itemize}
+\tightlist
+\item
+  R的安装和应用可以参考 https://www.r-project.org/
+\item
+  第一次使用需要安装seasonal包,可以在R
+  console里输入install.package('seasonal')
+\item
+  有一个季节性调整的交互网站
+  http://www.seasonal.website/?nsukey=\%2BO68e0omrbLCueCJ6pDUCUFDDwhqJU8nM4TzPK6qRM4\%2B3fZarFMjIVQBdnpfUsnvwOQjQRcIiUyM0TmKVk64CSTn3uqF1m9NXpMRlx2ZnZMSba\%2BP9L0iUbNpYxRGr04Rscmdfm01\%2F6aOGIP2cTtezRFWKobNJPUhn9rRjt5CDXPt2VSw4Mt8z0NvhMrGzx4ovkMjZDluOpf5zPJIJeV4Bw\%3D\%3D
+\item
+  关于X13-seats包的具体应用可以参考：https://www.census.gov/ts/x13as/docX13AS.pdf
+\item
+  关于R语言中X13-seats的应用可以参考：https://cran.r-project.org/web/packages/seasonal/seasonal.pdf
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{k+kp}{options}\PY{p}{(}repr.plot.width\PY{o}{=}\PY{l+m}{6}\PY{p}{,} repr.plot.height\PY{o}{=}\PY{l+m}{4}\PY{p}{)}
+         \PY{k+kn}{library}\PY{p}{(}seasonal\PY{p}{)}
+         \PY{k+kn}{source}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{genhol\PYZus{}cicc.R\PYZsq{}}\PY{p}{)}
+         \PY{k+kn}{source}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sa\PYZus{}bestday\PYZus{}cicc.R\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} export\PY{o}{=}read.csv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{export.csv\PYZsq{}}\PY{p}{,}header\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         export\PY{o}{=}ts\PY{p}{(}export\PY{o}{\PYZdl{}}x\PY{p}{,}start\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2004}\PY{p}{,}\PY{l+m}{1}\PY{p}{)}\PY{p}{,}frequency\PY{o}{=}\PY{l+m}{12}\PY{p}{)}
+         ts.plot\PY{p}{(}export\PY{p}{,}main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Export\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_3_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} m\PY{o}{\PYZlt{}\PYZhy{}}seas\PY{p}{(}export\PY{p}{,}regression.aictest\PY{o}{=}\PY{k+kc}{NULL}\PY{p}{)}
+         plot\PY{p}{(}m\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} m1\PY{o}{\PYZlt{}\PYZhy{}}seas\PY{p}{(}export\PY{p}{,}xreg\PY{o}{=}genhol\PYZus{}flow\PY{p}{(}cny\PY{p}{,}pre\PY{o}{=}\PY{l+m}{7}\PY{p}{,}during\PY{o}{=}\PY{l+m}{7}\PY{p}{,}post\PY{o}{=}\PY{l+m}{14}\PY{p}{)}\PY{p}{,}regression.aictest\PY{o}{=}\PY{k+kc}{NULL}\PY{p}{,}regression.usertype\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{holiday\PYZdq{}}\PY{p}{)}
+         plot\PY{p}{(}m1\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_5_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} M0\PY{o}{=}read.csv\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{M0.csv\PYZsq{}}\PY{p}{,}header\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         M0\PY{o}{=}ts\PY{p}{(}M0\PY{o}{\PYZdl{}}x\PY{p}{,}start\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2004}\PY{p}{,}\PY{l+m}{1}\PY{p}{)}\PY{p}{,}frequency\PY{o}{=}\PY{l+m}{12}\PY{p}{)}
+         ts.plot\PY{p}{(}M0\PY{p}{,}main\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Export\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} m2\PY{o}{\PYZlt{}\PYZhy{}}seas\PY{p}{(}M0\PY{p}{,}regression.aictest\PY{o}{=}\PY{k+kc}{NULL}\PY{p}{)}
+         plot\PY{p}{(}m2\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} m3\PY{o}{\PYZlt{}\PYZhy{}}seas\PY{p}{(}M0\PY{p}{,}xreg\PY{o}{=}genhol\PYZus{}stock\PY{p}{(}cny\PY{p}{,}pre\PY{o}{=}\PY{l+m}{14}\PY{p}{,}during\PY{o}{=}\PY{l+m}{7}\PY{p}{,}post\PY{o}{=}\PY{l+m}{7}\PY{p}{)}\PY{p}{,}regression.aictest\PY{o}{=}\PY{k+kc}{NULL}\PY{p}{,}regression.usertype\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{holiday\PYZdq{}}\PY{p}{)}
+         plot\PY{p}{(}m3\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} export\PYZus{}crit\PY{o}{\PYZlt{}\PYZhy{}}crit\PYZus{}flow\PY{p}{(}export\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} export\PYZus{}crit
+\end{Verbatim}
+
+
+    \begin{tabular}{lllllllllllllllll}
+	 AIC         & post=5      & post=6      & post=7      & post=8      & post=9      & post=10     & post=11     & post=12     & post=13     & post=14     & post=15     & post=16     & post=17     & post=18     & post=19     & post=20    \\
+	 pre=5       & 1957.6878   & 1951.7827   & 1943.5333   & 1934.9854   & 1926.4876   & 1918.9663   & 1934.9046   & 1929.6028   & 1925.5553   & 1922.5448   & 1920.4232   & 1918.9221   & 1917.5974   & 1881.8266   & 1880.4536   & 1879.4785  \\
+	 pre=6       & 1955.9183   & 1950.0187   & 1941.777    & 1933.2218   & 1924.7167   & 1917.1877   & 1933.06     & 1927.7383   & 1923.6944   & 1920.7114   & 1918.6321   & 1917.1871   & 1915.9286   & 1880.3263   & 1879.0154   & 1878.0849  \\
+	 pre=7       & 1954.26     & 1948.3684   & 1940.1465   & 1931.6079   & 1923.1278   & 1915.6283   & 1931.4514   & 1926.1515   & 1922.1477   & 1919.2259   & 1917.2192   & 1915.8569   & 1914.6744   & 1879.2358   & 1877.9788   & 1877.084   \\
+	 pre=8       & 1952.4197   & 1946.5715   & 1938.4179   & 1929.9493   & 1921.552    & 1914.1382   & 1930.1173   & 1924.8973   & 1920.9856   & 1918.1712   & 1916.2763   & 1915.0174   & 1879.857    & 1878.4358   & 1877.2217   & 1876.3495  \\
+	 pre=9       & 1950.5967   & 1944.8266   & 1936.7871   & 1928.4381   & 1920.1749   & 1912.8949   & 1929.1624   & 1924.0637   & 1920.2768   & 1917.5835   & 1915.8003   & 1914.6312   & 1879.3125   & 1877.9271   & 1876.7331   & 1875.8625  \\
+	 pre=10      & 1948.7305   & 1943.0857   & 1935.2178   & 1927.0432   & 1918.9683   & 1911.8701   & 1928.5136   & 1923.5694   & 1919.9212   & 1917.3442   & 1915.6552   & 1914.5507   & 1878.9971   & 1877.6251   & 1876.4288   & 1875.5393  \\
+	 pre=11      & 1946.9893   & 1941.4841   & 1933.8098   & 1925.8341   & 1917.9727   & 1911.0787   & 1928.1276   & 1923.352    & 1919.8452   & 1917.3767   & 1915.7677   & 1914.7105   & 1913.7196   & 1877.5284   & 1876.3167   & 1875.3973  \\
+	 pre=12      & 1945.4692   & 1940.0996   & 1908.981    & 1924.849    & 1917.2078   & 1910.5242   & 1905.1307   & 1923.3673   & 1919.998    & 1883.7375   & 1916.0876   & 1915.0648   & 1879.0087   & 1877.628    & 1876.3933   & 1875.4385  \\
+	 pre=13      & 1944.2128   & 1938.9655   & 1931.6697   & 1924.0972   & 1916.6713   & 1910.1934   & 1904.9829   & 1923.5731   & 1920.333    & 1918.0527   & 1882.1801   & 1880.7532   & 1914.5843   & 1913.6964   & 1876.6401   & 1875.6478  \\
+	 pre=14      & 1943.2259   & 1938.0998   & 1910.6324   & 1923.6231   & 1916.408    & 1910.1242   & 1905.081    & 1923.9758   & 1920.8448   & 1918.6348   & 1882.6227   & 1881.2125   & 1915.207    & 1914.2919   & 1877.0451   & 1876.0141  \\
+	 pre=15      & 1942.4703   & 1937.4594   & 1930.5315   & 1923.3663   & 1916.3518   & 1910.2477   & 1905.3557   & 1924.5083   & 1921.4696   & 1919.3153   & 1883.193    & 1881.7913   & 1880.3208   & 1878.885    & 1877.5602   & 1876.491   \\
+	 pre=16      & 1941.9756   & 1937.0803   & 1930.3271   & 1923.3536   & 1916.5219   & 1910.5767   & 1905.8151   & 1925.1641   & 1922.199    & 1920.0854   & 1883.8915   & 1882.4915   & 1881.0081   & 1879.5485   & 1878.1919   & 1877.0866  \\
+	 pre=17      & 1941.6842   & 1936.902    & 1930.3142   & 1923.5195   & 1916.8534   & 1911.0483   & 1906.399    & 1925.8948   & 1922.9886   & 1920.9047   & 1884.6704   & 1883.2675   & 1881.7689   & 1880.2853   & 1878.8979   & 1877.7589  \\
+	 pre=18      & 1941.5559   & 1936.8715   & 1930.4237   & 1923.7792   & 1917.2489   & 1911.557    & 1906.997    & 1926.5831   & 1923.7207   & 1887.0485   & 1885.4132   & 1884.0042   & 1882.49     & 1880.9837   & 1879.5684   & 1878.3998  \\
+	 pre=19      & 1941.5238   & 1936.9131   & 1912.2226   & 1924.0451   & 1917.6208   & 1912.0172   & 1907.5271   & 1927.1738   & 1924.3455   & 1887.6874   & 1886.0582   & 1884.6441   & 1883.1172   & 1881.5927   & 1880.155    & 1878.9629  \\
+	 pre=20      & 1941.5469   & 1919.3068   & 1912.6123   & 1924.3025   & 1917.9626   & 1912.4293   & 1907.9951   & 1927.6828   & 1924.8818   & 1888.2436   & 1886.6191   & 1920.4299   & 1919.315    & 1882.1238   & 1880.6679   & 1879.4567  \\
+	 BIC         & post=5      & post=6      & post=7      & post=8      & post=9      & post=10     & post=11     & post=12     & post=13     & post=14     & post=15     & post=16     & post=17     & post=18     & post=19     & post=20    \\
+	 pre=5       & 1992.0514   & 1986.1463   & 1977.8969   & 1969.349    & 1960.8512   & 1953.3299   & 1963.0203   & 1957.7184   & 1953.671    & 1950.6605   & 1948.5389   & 1947.0378   & 1945.7131   & 1919.3142   & 1917.9412   & 1916.9661  \\
+	 pre=6       & 1990.2819   & 1984.3823   & 1976.1406   & 1967.5854   & 1959.0803   & 1951.5513   & 1961.1756   & 1955.8539   & 1951.8101   & 1948.827    & 1946.7478   & 1945.3028   & 1944.0442   & 1917.8139   & 1916.503    & 1915.5725  \\
+	 pre=7       & 1988.6236   & 1982.732    & 1974.5101   & 1965.9715   & 1957.4914   & 1949.9919   & 1959.5671   & 1954.2672   & 1950.2634   & 1947.3416   & 1945.3349   & 1943.9726   & 1942.7901   & 1916.7234   & 1915.4664   & 1914.5715  \\
+	 pre=8       & 1986.7833   & 1980.9351   & 1972.7815   & 1964.3129   & 1955.9156   & 1948.5018   & 1958.2329   & 1953.013    & 1949.1013   & 1946.2868   & 1944.392    & 1943.1331   & 1917.3446   & 1915.9234   & 1914.7092   & 1913.8371  \\
+	 pre=9       & 1984.9603   & 1979.1902   & 1971.1507   & 1962.8017   & 1954.5385   & 1947.2585   & 1957.278    & 1952.1794   & 1948.3925   & 1945.6992   & 1943.916    & 1942.7469   & 1916.8001   & 1915.4147   & 1914.2207   & 1913.35    \\
+	 pre=10      & 1983.0941   & 1977.4493   & 1969.5814   & 1961.4068   & 1953.3319   & 1946.2337   & 1956.6293   & 1951.6851   & 1948.0369   & 1945.4598   & 1943.7709   & 1942.6664   & 1916.4846   & 1915.1127   & 1913.9164   & 1913.0269  \\
+	 pre=11      & 1981.3529   & 1975.8477   & 1968.1734   & 1960.1977   & 1952.3363   & 1945.4423   & 1956.2432   & 1951.4677   & 1947.9609   & 1945.4923   & 1943.8834   & 1942.8262   & 1941.8353   & 1915.016    & 1913.8042   & 1912.8849  \\
+	 pre=12      & 1979.8328   & 1974.4632   & 1949.5925   & 1959.2126   & 1951.5714   & 1944.8878   & 1939.4943   & 1951.483    & 1948.1136   & 1921.2251   & 1944.2033   & 1943.1805   & 1916.4962   & 1915.1156   & 1913.8808   & 1912.9261  \\
+	 pre=13      & 1978.5764   & 1973.3291   & 1966.0333   & 1958.4608   & 1951.0349   & 1944.557    & 1939.3465   & 1951.6888   & 1948.4487   & 1946.1684   & 1919.6677   & 1918.2408   & 1942.7      & 1941.8121   & 1914.1276   & 1913.1354  \\
+	 pre=14      & 1977.5895   & 1972.4634   & 1960.7108   & 1957.9867   & 1950.7716   & 1944.4878   & 1939.4446   & 1952.0914   & 1948.9605   & 1946.7504   & 1920.1103   & 1918.7      & 1943.3226   & 1942.4076   & 1914.5327   & 1913.5017  \\
+	 pre=15      & 1976.8339   & 1971.823    & 1964.8951   & 1957.7299   & 1950.7154   & 1944.6113   & 1939.7193   & 1952.624    & 1949.5853   & 1947.431    & 1920.6805   & 1919.2789   & 1917.8084   & 1916.3725   & 1915.0477   & 1913.9786  \\
+	 pre=16      & 1976.3392   & 1971.4439   & 1964.6907   & 1957.7172   & 1950.8855   & 1944.9403   & 1940.1787   & 1953.2798   & 1950.3146   & 1948.2011   & 1921.379    & 1919.9791   & 1918.4956   & 1917.0361   & 1915.6794   & 1914.5742  \\
+	 pre=17      & 1976.0478   & 1971.2656   & 1964.6778   & 1957.8831   & 1951.217    & 1945.4119   & 1940.7626   & 1954.0105   & 1951.1043   & 1949.0204   & 1922.1579   & 1920.7551   & 1919.2565   & 1917.7729   & 1916.3854   & 1915.2465  \\
+	 pre=18      & 1975.9195   & 1971.2351   & 1964.7873   & 1958.1428   & 1951.6125   & 1945.9206   & 1941.3606   & 1954.6988   & 1951.8363   & 1924.5361   & 1922.9007   & 1921.4917   & 1919.9775   & 1918.4713   & 1917.056    & 1915.8874  \\
+	 pre=19      & 1975.8874   & 1971.2767   & 1962.3009   & 1958.4087   & 1951.9844   & 1946.3808   & 1941.8907   & 1955.2894   & 1952.4612   & 1925.175    & 1923.5458   & 1922.1317   & 1920.6047   & 1919.0803   & 1917.6426   & 1916.4505  \\
+	 pre=20      & 1975.9105   & 1969.3852   & 1962.6907   & 1958.6661   & 1952.3262   & 1946.7929   & 1942.3587   & 1955.7985   & 1952.9974   & 1925.7311   & 1924.1067   & 1948.5456   & 1947.4307   & 1919.6114   & 1918.1555   & 1916.9443  \\
+	 No\_outliers & post=5        & post=6        & post=7        & post=8        & post=9        & post=10       & post=11       & post=12       & post=13       & post=14       & post=15       & post=16       & post=17       & post=18       & post=19       & post=20      \\
+	 pre=5       & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5          \\
+	 pre=6       & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5          \\
+	 pre=7       & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5          \\
+	 pre=8       & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5           & 5          \\
+	 pre=9       & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5           & 5          \\
+	 pre=10      & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5           & 5          \\
+	 pre=11      & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 2           & 2           & 2           & 2           & 5           & 5           & 5          \\
+	 pre=12      & 4           & 4           & 6           & 4           & 4           & 4           & 4           & 2           & 2           & 5           & 2           & 2           & 5           & 5           & 5           & 5          \\
+	 pre=13      & 4           & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 5           & 5           & 2           & 2           & 5           & 5          \\
+	 pre=14      & 4           & 4           & 10          & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 5           & 5           & 2           & 2           & 5           & 5          \\
+	 pre=15      & 4           & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 5           & 5           & 5           & 5           & 5           & 5          \\
+	 pre=16      & 4           & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 5           & 5           & 5           & 5           & 5           & 5          \\
+	 pre=17      & 4           & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 2           & 5           & 5           & 5           & 5           & 5           & 5          \\
+	 pre=18      & 4           & 4           & 4           & 4           & 4           & 4           & 4           & 2           & 2           & 5           & 5           & 5           & 5           & 5           & 5           & 5          \\
+	 pre=19      & 4           & 4           & 10          & 4           & 4           & 4           & 4           & 2           & 2           & 5           & 5           & 5           & 5           & 5           & 5           & 5          \\
+	 pre=20      & 4           & 10          & 10          & 4           & 4           & 4           & 4           & 2           & 2           & 5           & 5           & 2           & 2           & 5           & 5           & 5          \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} M0\PYZus{}crit
+\end{Verbatim}
+
+
+    \begin{tabular}{lllllllllllllllll}
+	 AIC         & post=5      & post=6      & post=7      & post=8      & post=9      & post=10     & post=11     & post=12     & post=13     & post=14     & post=15     & post=16     & post=17     & post=18     & post=19     & post=20    \\
+	 pre=5       & 2547.3521   & 2576.0196   & 2573.4891   & 2585.1304   & 2584.7101   & 2525.7669   & 2520.7438   & 2562.1795   & 2570.1162   & 2526.9003   & 2505.7762   & 2614.6688   & 2610.8322   & 2611.68     & 2612.2764   & 2613.4457  \\
+	 pre=6       & 2570.2218   & 2524.7591   & 2573.4891   & 2546.5329   & 2593.1244   & 2522.9891   & 2549.5044   & 2559.937    & 2526.6495   & 2556.0473   & 2601.9653   & 2565.4555   & 2607.707    & 2510.1961   & 2609.157    & 2610.4677  \\
+	 pre=7       & 2570.2218   & 2563.0035   & 2534.0903   & 2577.7605   & 2616.2244   & 2531.4904   & 2497.3259   & 2559.0223   & 2525.5704   & 2571.498    & 2601.0563   & 2563.8986   & 2607.1718   & 2514.7646   & 2608.6105   & 2609.9796  \\
+	 pre=8       & 2442.5348   & 2571.344    & 2560.7698   & 2584.5591   & 2582.3085   & 2524.533    & 2434.997    & 2506.9308   & 2643.3562   & 2522.3633   & 2583.0882   & 2513.8973   & 2563.7197   & 2609.8817   & 2608.7625   & 2610.0503  \\
+	 pre=9       & 2562.0466   & 2551.5759   & 2444.9997   & 2573.2476   & 2556.7743   & 2436.7386   & 2436.1427   & 2446.8541   & 2501.6678   & 2525.263    & 2567.7214   & 2518.9373   & 2514.995    & 2585.1324   & 2584.2486   & 2585.8455  \\
+	 pre=10      & 2434.3072   & 2542.5806   & 2532.9055   & 2590.2199   & 2585.6143   & 2627.1688   & 2430.8441   & 2443.9587   & 2502.2846   & 2481.8997   & 2508.6752   & 2552.1533   & 2585.1262   & 2585.2522   & 2580.1193   & 2487.3349  \\
+	 pre=11      & 2435.5617   & 2588.2795   & 2545.3759   & 2599.5244   & 2601.9468   & 2578.599    & 2640.2316   & 2632.4752   & 2588.9934   & 2666.6368   & 2721.7813   & 2608.4209   & 2500.9707   & 2607.9573   & 2491.1795   & 2512.0657  \\
+	 pre=12      & 2582.5133   & 2548.3429   & 2606.698    & 2592.95     & 2579.1585   & 2598.839    & 2550.4545   & 2622.7434   & 2701.0777   & 2499.2043   & 2488.0154   & 2705.7799   & 2589.1168   & 2500.4488   & 2495.5381   & 2480.0608  \\
+	 pre=13      & 2563.9952   & 2566.112    & 2588.8168   & 2584.2117   & 2582.0355   & 2562.4181   & 2569.2248   & 2475.9226   & 2523.066    & 2515.8083   & 2541.4896   & 2500.4549   & 2509.5611   & 2608.1066   & 2455.1123   & 2521.9207  \\
+	 pre=14      & 2499.9621   & 2585.1813   & 2594.8892   & 2579.3132   & 2549.0685   & 2522.3702   & 2552.9382   & 2599.6317   & 2597.7097   & 2550.6065   & 2544.8551   & 2491.0004   & 2501.6937   & 2612.8923   & 2614.844    & 2549.6254  \\
+	 pre=15      & 2552.0719   & 2509.9409   & 2524.4788   & 2579.9913   & 2545.2186   & 2430.2165   & 2426.7877   & 2595.8423   & 2592.6127   & 2596.2516   & 2501.2199   & 2494.7431   & 2494.2333   & 2607.5871   & 2609.2132   & 2612.8085  \\
+	 pre=16      & 2500.6741   & 2565.662    & 2558.2421   & 2552.4829   & 2469.1936   & 2522.0777   & 2428.5566   & 2584.0866   & 2478.4429   & 2452.3834   & 2478.3554   & 2592.3379   & 2494.5646   & 2606.6801   & 2572.6237   & 2611.4751  \\
+	 pre=17      & 2509.6113   & 2548.3778   & 2598.6222   & 2582.701    & 2584.8277   & 2583.6514   & 2466.6222   & 2586.7547   & 2481.1423   & 2450.95     & 2470.924    & 2592.6845   & 2594.4887   & 2484.1323   & 2609.0584   & 2612.2778  \\
+	 pre=18      & 2574.6969   & 2576.9766   & 2570.03     & 2585.3037   & 2578.0718   & 2482.2097   & 2485.8082   & 2593.0004   & 2501.0445   & 2477.9739   & 2486.934    & 2440.148    & 2586.2847   & 2590.5858   & 2602.2367   & 2616.3563  \\
+	 pre=19      & 2576.9358   & 2557.2725   & 2570.8011   & 2587.798    & 2567.6668   & 2462.3732   & 2474.7186   & 2480.2088   & 2494.1817   & 2486.0218   & 2489.2723   & 2591.6895   & 2592.2966   & 2596.7592   & 2608.196    & 2612.1539  \\
+	 pre=20      & 2580.3383   & 2534.1928   & 2603.8566   & 2591.4765   & 2583.3113   & 2558.2722   & 2482.2391   & 2486.4557   & 2514.0288   & 2489.0344   & 2493.6106   & 2597.9869   & 2598.7046   & 2603.2681   & 2606.4019   & 2615.3319  \\
+	 BIC         & post=5      & post=6      & post=7      & post=8      & post=9      & post=10     & post=11     & post=12     & post=13     & post=14     & post=15     & post=16     & post=17     & post=18     & post=19     & post=20    \\
+	 pre=5       & 2606.7075   & 2625.9075   & 2632.8444   & 2638.2378   & 2625.3216   & 2585.1222   & 2576.9751   & 2605.915    & 2613.8517   & 2576.8837   & 2558.8836   & 2655.2803   & 2645.1958   & 2646.0436   & 2646.64     & 2647.8093  \\
+	 pre=6       & 2629.5771   & 2596.6103   & 2632.8444   & 2612.1362   & 2636.8599   & 2591.7163   & 2605.7358   & 2603.6725   & 2576.633    & 2612.2787   & 2639.4529   & 2615.4389   & 2642.0706   & 2575.7993   & 2643.5206   & 2644.8313  \\
+	 pre=7       & 2629.5771   & 2622.3588   & 2602.8175   & 2633.9918   & 2659.9599   & 2597.0936   & 2562.9291   & 2602.7578   & 2575.5539   & 2621.4814   & 2638.5439   & 2613.882    & 2641.5354   & 2577.2438   & 2642.9741   & 2644.3432  \\
+	 pre=8       & 2533.1298   & 2624.4514   & 2617.0012   & 2634.5425   & 2632.2919   & 2587.0123   & 2525.592    & 2578.782    & 2680.8438   & 2581.7186   & 2623.6998   & 2573.2526   & 2613.7031   & 2644.2453   & 2643.1261   & 2644.4139  \\
+	 pre=9       & 2615.154    & 2607.8073   & 2532.4707   & 2620.1071   & 2606.7577   & 2521.0856   & 2526.7377   & 2537.449    & 2567.271    & 2590.8663   & 2611.4569   & 2578.2926   & 2574.3504   & 2622.62     & 2621.7362   & 2623.3331  \\
+	 pre=10      & 2524.9021   & 2601.9359   & 2595.3848   & 2630.7538   & 2626.1482   & 2664.6564   & 2521.439    & 2534.5537   & 2571.0118   & 2556.8748   & 2574.2784   & 2608.3846   & 2622.6138   & 2622.7398   & 2617.6068   & 2543.5663  \\
+	 pre=11      & 2523.0327   & 2628.891    & 2592.2354   & 2640.136    & 2636.2448   & 2622.3345   & 2668.3473   & 2660.5371   & 2635.8529   & 2701.0004   & 2743.649    & 2642.7845   & 2557.202    & 2642.3209   & 2547.4108   & 2562.0491  \\
+	 pre=12      & 2626.2487   & 2601.4503   & 2641.0616   & 2627.2479   & 2616.5744   & 2630.0786   & 2597.2244   & 2650.8053   & 2722.9455   & 2564.8075   & 2553.6186   & 2730.7716   & 2626.6044   & 2556.6802   & 2551.7695   & 2536.2922  \\
+	 pre=13      & 2610.8546   & 2612.9715   & 2626.3044   & 2618.5096   & 2616.3334   & 2602.952    & 2609.7588   & 2547.7738   & 2579.2974   & 2575.1636   & 2597.721    & 2562.9342   & 2568.9164   & 2639.3463   & 2526.9635   & 2571.9041  \\
+	 pre=14      & 2556.1935   & 2619.4792   & 2626.0692   & 2613.6111   & 2589.6025   & 2572.2581   & 2596.6737   & 2630.8714   & 2628.9494   & 2603.7139   & 2594.8385   & 2556.6036   & 2564.173    & 2641.008    & 2642.9596   & 2596.4848  \\
+	 pre=15      & 2595.8074   & 2566.1722   & 2583.8341   & 2620.6028   & 2585.7525   & 2505.1916   & 2504.8868   & 2627.0819   & 2623.8523   & 2627.4912   & 2563.6991   & 2557.2224   & 2556.7125   & 2635.7027   & 2637.3289   & 2640.9241  \\
+	 pre=16      & 2566.2773   & 2612.5215   & 2601.9776   & 2596.2184   & 2534.7969   & 2575.1851   & 2503.5317   & 2618.4502   & 2540.9222   & 2521.1106   & 2543.9586   & 2623.5775   & 2557.0438   & 2634.7958   & 2606.9873   & 2639.5908  \\
+	 pre=17      & 2572.0906   & 2601.4852   & 2632.9858   & 2620.1885   & 2619.1913   & 2618.015    & 2535.3494   & 2621.1183   & 2543.6215   & 2519.6772   & 2539.6512   & 2623.9242   & 2625.7284   & 2546.6115   & 2637.1741   & 2640.3934  \\
+	 pre=18      & 2621.5563   & 2623.836    & 2620.0134   & 2622.7912   & 2621.8073   & 2547.8129   & 2551.4114   & 2627.364    & 2560.3998   & 2540.4532   & 2552.5372   & 2524.495    & 2620.6483   & 2624.9495   & 2633.4763   & 2644.472   \\
+	 pre=19      & 2623.7952   & 2601.008    & 2620.7845   & 2625.2855   & 2614.5263   & 2537.3483   & 2546.5698   & 2552.06     & 2553.5371   & 2551.625    & 2554.8755   & 2626.0531   & 2626.6602   & 2631.1228   & 2639.4357   & 2643.3936  \\
+	 pre=20      & 2627.1977   & 2590.4241   & 2638.2202   & 2628.9641   & 2620.7988   & 2608.2556   & 2554.0903   & 2558.3069   & 2573.3841   & 2554.6377   & 2559.2138   & 2632.3505   & 2633.0682   & 2637.6317   & 2640.7655   & 2649.6955  \\
+	 No\_outliers & post=5        & post=6        & post=7        & post=8        & post=9        & post=10       & post=11       & post=12       & post=13       & post=14       & post=15       & post=16       & post=17       & post=18       & post=19       & post=20      \\
+	 pre=5       & 15          & 10          & 10          & 11          & 10          & 16          & 15          & 11          & 10          & 13          & 14          & 7           & 7           & 7           & 7           & 7          \\
+	 pre=6       & 11          & 15          & 10          & 12          & 9           & 18          & 15          & 11          & 13          & 14          & 8           & 12          & 7           & 17          & 7           & 7          \\
+	 pre=7       & 11          & 11          & 13          & 9           & 7           & 17          & 18          & 11          & 13          & 12          & 8           & 12          & 7           & 16          & 7           & 7          \\
+	 pre=8       & 24          & 10          & 10          & 8           & 8           & 15          & 24          & 18          & 5           & 15          & 9           & 15          & 9           & 7           & 7           & 7          \\
+	 pre=9       & 11          & 12          & 24          & 10          & 12          & 23          & 24          & 24          & 17          & 14          & 10          & 14          & 14          & 8           & 8           & 8          \\
+	 pre=10      & 24          & 11          & 12          & 7           & 7           & 4           & 24          & 24          & 17          & 19          & 16          & 11          & 8           & 8           & 8           & 14         \\
+	 pre=11      & 23          & 7           & 10          & 5           & 5           & 8           & 3           & 3           & 7           & 3           & 0           & 6           & 14          & 6           & 14          & 13         \\
+	 pre=12      & 6           & 9           & 4           & 5           & 6           & 6           & 9           & 3           & 0           & 16          & 17          & 0           & 7           & 14          & 14          & 15         \\
+	 pre=13      & 7           & 7           & 5           & 5           & 5           & 7           & 7           & 18          & 12          & 13          & 10          & 15          & 14          & 5           & 19          & 12         \\
+	 pre=14      & 14          & 5           & 4           & 5           & 7           & 10          & 10          & 5           & 5           & 9           & 10          & 16          & 15          & 4           & 4           & 10         \\
+	 pre=15      & 9           & 13          & 11          & 5           & 7           & 19          & 20          & 5           & 5           & 5           & 14          & 15          & 15          & 4           & 4           & 4          \\
+	 pre=16      & 13          & 7           & 9           & 9           & 16          & 10          & 20          & 6           & 15          & 18          & 16          & 5           & 15          & 4           & 7           & 4          \\
+	 pre=17      & 13          & 9           & 5           & 7           & 6           & 6           & 17          & 6           & 15          & 18          & 17          & 5           & 4           & 16          & 4           & 4          \\
+	 pre=18      & 7           & 7           & 8           & 6           & 6           & 16          & 16          & 6           & 14          & 16          & 16          & 22          & 6           & 6           & 4           & 4          \\
+	 pre=19      & 7           & 10          & 8           & 6           & 7           & 19          & 18          & 18          & 15          & 16          & 16          & 6           & 6           & 6           & 4           & 4          \\
+	 pre=20      & 7           & 11          & 6           & 7           & 7           & 8           & 18          & 18          & 14          & 16          & 16          & 6           & 6           & 6           & 6           & 4          \\
+\end{tabular}
+
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

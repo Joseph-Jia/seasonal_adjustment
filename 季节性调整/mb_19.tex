@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{cite}
+\usetikzlibrary{decorations} 
+\usetikzlibrary{decorations.pathmorphing,decorations.markings}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{indentfirst}
+\setlength{\topmargin}{0.0in}
+\setlength{\textheight}{8.25in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parskip}{2pt}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{caption}
+\begin{document}
+\begin{itemize}
+\item[(a)] \textit{Write down the choice problem face by a young person(write out the budget constraint in terms of $l$ and $c_{2}$)}
+\[\max U=\ln (l)+\beta c_{2} \]
+\[s.t. \left\{ \begin{aligned} n+l=T \\ c_{2}\leq \frac{v_{t+1}}{v_{t}}\omega n + a_{t+1}\end{aligned} \right. \implies l+c_{2}/[\omega \frac{v_{t+1}}{v_{t}}]\leq T+a_{t+1}/[\omega \frac{v_{t+1}}{v_{t}}]\]
+\item[(b)] \textit{What happens to real GDP in this economy as inflation rate rises? Explain?}
+\[\max U=\ln (l) +\beta c_{2}\]
+\[s.t. \ l+zc_{2}/\omega \leq T +za_{t+1}/\omega\]
+\[a_{t+1}=(1-\frac{1}{z})v_{t+1}M_{t+1}=(1-\frac{1}{z})\omega n_{t+1}\]
+\[\implies l+zc_{2}/\omega \leq T +(z-1)n_{t+1}\]
+\[\max \ln (l) +\beta [T+(z-1)n_{t+1}-l]\frac{\omega}{z}\]
+F.O.C \[\frac{1}{l}-\beta\omega/z=0\]
+\[l=\frac{z}{\beta \omega}\]
+\[y=\omega n=\omega (T-l)=\omega T-\frac{z}{\beta}\]
+$y$ decreases with higher inflation. Here we assume $\frac{z}{\beta \omega} \leq T$,  otherwise people will choose not to work.
+\item[(c)] \textit{How to interpret the welfare cost of inflation in this economy?}
+\[ln(l)+\beta [T+(z-1)n_{t+1}-l]\frac{\omega}{z}=\ln(z)-\ln(\beta \omega)+\beta(\omega T- \frac{z}{\beta})=\ln (z)-z+C\]
+which decreases with z when $z \geq 1$. Inflation is costly since it distorts the rate of return for money, driving the economy out of first-best allocation.
+\end{itemize}
+\end{document}

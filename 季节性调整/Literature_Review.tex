@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{setspace}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage{cite}
+\usetikzlibrary{decorations} 
+\usetikzlibrary{decorations.pathmorphing,decorations.markings}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{indentfirst}
+\setlength{\topmargin}{0.0in}
+\setlength{\textheight}{8.25in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parskip}{2pt}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage[slantfont, boldfont]{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{caption}
+\author{贾昊天}
+\title{开题报告——贝叶斯视角下的中国货币政策传导机制}
+\date{\today}
+\begin{document}
+\maketitle
+\section{引言}
+越来越多的研究者发现统计学中的贝叶斯方法已经成为了一个经济学研究中非常实用且很有价值的方法。相较于传统的计量经济学方法，贝叶斯方法有很多不可比拟的优势。贝叶斯方法和传统统计方法的根本差异在于传统的统计方法认为参数是一个固定值，从而通过数据表现出的特征运用似然函数和假设检验等手段来判断参数设定是否合理；而贝叶斯的估计方法则是认为参数服从一个分布，利用前人研究结果设定的先验分布和贝叶斯公式来构造一个后验分布，再通过MCMC等方法进行抽样。贝叶斯方法的第一个优势在于其先验分布可以总结已有文献对于参数的设定，如果采用传统频率的统计学研究将无法引入人们对于参数的认识。再者，贝叶斯方法在比较多重检验时较传统的计量方法表现得更好，将更容易得比较不同模型的似然函数从而判断哪一个模型更适合。在数据较少时（特别是中国宏观数据），贝叶斯由于存在先验分布，其估计区间将更为合理和精确。
+
+贝叶斯方法在宏观经济学的一个重要应用就是估计动态随机一般均衡模型（DSGE）。由于卢卡斯批判的存在，传统的VAR和SVAR模型由于参数可能随政策或预期而变化不能很好的来解释经济运行。因此DSGE模型的引入从经济体的每一个个体的最优化的根本问题出发，来解释宏观经济的波动情况，将短期均衡和长期均衡联系起来。其次，DSGE模型在估计社会福利和设计最优政策时也有着传统估计方法不可比拟的优势。而在估计DSGE模型参数时，由于参数维度较多，使用传统频率的统计方法很难估计到全局最优值（遗传算法和模拟退火法很难解决动态问题），只能采用一些校准的方法。而且由于中国宏观数据量较小，因此采用贝叶斯的估计方法将能更好地解决这个问题。
+
+除了在DSGE模型中，贝叶斯方法在研究其他模型时也有其特有的优势。传统的FAVAR模型虽然可以通过PCA等降维方法构造因子解决VAR维度过高的问题，但其针对的也只是相同时间数据的降维，而贝叶斯方法可以在降维时不仅考虑当期的经济变量，而可以将所有可观测变量融入到因子当中。在VAR和其他简单回归模型当中，如果因子过多，当然可以通过罚函数来取消一些因子，比如我们常见的LASSO回归或者RIDGE回归，但是如果回归系数会随着时间变化，有时要纳入模型考虑，有时由于其影响过小不在模型中，传统的频率统计方法将很难完成这个工作，而贝叶斯方法可以通过对参数估计分布的变化很容易解决这一问题。
+\section{文献综述}
+自从Lucas（1972）的理性预期以及Kydland and Prescott（1982）首次构建一个完整的动态经济模型以来，许多批评者认为经济体所有的波动并不是都是全要素生产率的波动而引发的，随着价格粘性工资粘性，Dixit-Stiglitz生产函数等经济思想的不断丰富，有着价格粘性的DSGE模型在03年被第一次写入Woodford（2003）教科书之中，成为了DSGE模型的一个基准。随后DSGE模型成为了很多央行的研究工具，比如美联储(Erceg et al. 2006) , 欧洲中央银行(Christoffel et al. 2007), 加拿大银行(Murchison and Rennison 2006), 英格兰银行(Harrison
+et al. 2005)等。. King et al. (2002)的均衡线性化，Christiano (1990)的函数值迭代，Chernozhukov and Hong (2003)将MCMC方法成功引入以及卡尔曼滤波等方法，使得DSGE的参数估计的方法论真正成熟。但是，正如Fernández-Villaverde et al. （2006）指出的一样，只使用一阶泰勒展开可能会导致模型产生巨大的偏差，因此很多的研究侧重于研究DSGE的非线性，比如随时间变化的方差，比如McConnell and Pérez-Quirós (2000), Kim and Nelson (1998), Fernández-Villaverde and Rubio-Ramírez (2007)，线性化的模型也可以通过制度转变等模型来刻画非线性，比如Sims and Zha(2006). 当然还有很多关于DSGE模型估计中可能遇到的各种问题，比如Bils et al. (2008)讨论了状态依赖定价可能比Calvo定价更符合数据，Backus et al. （2005），Hansen and Sargent（2007)，Christiano, Motto, and Rostagno (2014)，Rubio-Ram´ırez (2015)讨论了效用函数的其他形式，Cooper and Haltiwanger (2006)认为调整成本是非凸的，Geweke（1994）; Fernández-Villaverde and Rubio-Ramírez（2007）认为经济的波动应该服从一个长尾的分布。Parra-Alvarez (2015)讨论了连续时间维度的DSGE模型，Maliar et al. (2015)提出用shooting的方法来解DSGE模型。
+
+关于中国DSGE模型的文献也有很多，其侧重点主要在于讨论中国的货币政策。Ma and Li(2015)发现中国货币政策的透明度非常低，Eric（2014）发现中国的房价和居住收入有12-32\%能被货币政策解释，Li et al.（2015）发现一个较大的竞争市场部门比新凯恩斯模型更贴合中国经济，Li and Liu(2017)发现货币供给量的货币政策比利率货币政策更符合中国经济发展模式并且传统的泰勒规则并不能很好的解释中国的政策。Zheng et al.（2012）发现一个存在两个制度变化的泰勒规则能更好的解释中国的货币政策，Zheng and Guo（2013）发现利率不只对通胀和产出缺口有反应，对人民币汇率也有反应。国内也有一些DSGE模型的研究，刘斌（2008）考虑了加入金融加速器模型的货币政策分析，李连发和辛晓岱（2012）用DSGE研究了银行信用扩张导致的宏观效应，侯成琪和龚六堂（2014）讨论了部门价格粘性的异质性与货币政策的传导，侯成琪和龚六堂（2013）侧重利用DSGE模型提出核心通货膨胀的概念。庄子罐等（2018）研究了影子银行体系对宏观经济波动的影响。朱超等（2018）用DSGE模型研究了人口结构对经常账户的效应。庄子罐等（2016）讨论了中国货币规则的选择，尚玉皇和郑挺国（2018）引入了利率期限结构的混频DSGE模型说明了国债收益率对中国宏观经济波动的重要性。何青等（2015）研究了房地产对中国经济周期的影响。
+
+除了DSGE模型，贝叶斯方法在经济学中还有很多其他应用。Sims（1993）用贝叶斯方法估计了VAR模型，Sims and Zha（2006）运用贝叶斯方法估计了马尔可夫转变的VAR过程。 Canova and Gambetti (2009) 发现美国货币政策自从1980年对通胀的反应更强烈。
+
+
+
+
+
+
+
+
+\end{document}
